@@ -3,10 +3,17 @@
 #include <string>
 #include <iomanip>
 
+
+/* In this program I have multiple functions showing off 3 different debugging 
+techniques, I feel that learning different methods to debug
+is one of the most important things you can do as a programmer. Debugging
+will always be a necessary skill in any programming related profession*/
+
 /* -----------------------------------------------------------
-   2.5.1.1  PRINT DEBUGGING
+  PRINT DEBUGGING
    -----------------------------------------------------------
-   Goal: show how sprinkling `std::cout` statements lets us
+   With print debugging we want to 
+   show how sprinkling `std::cout` statements lets us
          watch data evolve and spot mistakes.
    Example bug: We want the sum of *positive* numbers only,
                 but we wrote the loop wrong on purpose.
@@ -16,13 +23,15 @@ int sumPositive(const std::vector<int>& v)
     int sum = 0;
     for (std::size_t i = 0; i < v.size(); ++i)
     {
-        /* DEBUG OUTPUT – remove once the bug is fixed */
+        /* these print statements can help us understand
+        where the program is messing up
+         after testing, we remove once the bug is fixed */
         std::cout << "[print-debug] i=" << i
                   << "  v[i]=" << v[i]
                   << "  runningSum(before)=" << sum << '\n';
 
-        /* BUG:      should be  if (v[i] > 0) …                     *
-         * CONSEQUENCE: negative numbers sneak into the sum.        */
+        /*   the bug is that it should be  if (v[i] > 0) …                     *
+         *this is because negative numbers sneak into the sum.        */
         /* WRONG */  /* if (v[i] > 0) */ sum += v[i];
 
         std::cout << "[print-debug] runningSum(after)=" << sum << "\n\n";
@@ -31,11 +40,11 @@ int sumPositive(const std::vector<int>& v)
 }
 
 /* -----------------------------------------------------------
-   2.5.1.2  RUBBER-DUCK DEBUGGING
+   RUBBER-DUCK DEBUGGING
    -----------------------------------------------------------
-   We “explain every line” to a rubber duck (here: through
-   comments).  The code itself is fine; the demonstration is
-   the *commentary*.
+   This method of debugging is more to help programmers run through their line of code
+   so that they can spot any mistakes they made. You pretend that you are talking
+   to a rubber duck
 ----------------------------------------------------------------*/
 bool isPalindrome(const std::string& s)
 {
@@ -60,10 +69,10 @@ bool isPalindrome(const std::string& s)
 }
 
 /* -----------------------------------------------------------
-   2.5.1.3  WOLF-FENCE DEBUGGING
+    WOLF-FENCE DEBUGGING
    -----------------------------------------------------------
-   Idea: repeatedly “fence off” half the territory to isolate
-         the wolf (bug).
+   this involves repeatedly “fencing off” half the territory to isolate
+         the wolf or the  bug.
    We intentionally broke multiplication (we used + instead of *).
    The helper shows how you could keep narrowing your search.
 ----------------------------------------------------------------*/
@@ -80,7 +89,7 @@ int multiplyWithFences(int a, int b)
     return buggyMultiply(a, b);
 }
 
-/* === Demos ==================================================*/
+
 void printDebuggingDemo()
 {
     std::cout << "\n====== Print Debugging Demo ======\n";
